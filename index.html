@@ -6,15 +6,19 @@
         <title>New Tab</title>
 
         <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="frame">
-            <div id="todoistDiv">
-                <iframe  id="todoistIframe"
-                title="Todoist"
-                width="25%"
-                height="90%"
-                src="https://app.todoist.com/app/upcoming"></iframe>
+        <div id="frame" class="base crt">
+            <iframe class="base" id="todoistIframe"
+            title="Todoist"
+            src="https://app.todoist.com/app/upcoming"></iframe>
+            <div>
+                Test!
             </div>
         </div>
     </body>
