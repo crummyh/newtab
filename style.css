@@ -214,6 +214,6 @@ body.fullscreen #crt {
 	position: absolute;
 	bottom: 100%;
 	pointer-events: none;
-	animation: scanline 10s linear infinite;
+	animation: scanline 7s linear infinite;
 }
 

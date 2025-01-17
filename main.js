@@ -5,19 +5,13 @@ function pause(s = 1) {
 async function type(text) {
 
     let queue = text.split("");
-    let container = document.getElementById("terminal")
+    let container = document.querySelector(".terminal")
 
-    while (queue.length) {
-        let char = queue.shift();
-        container.appendChild(char);
-        await pause(0.01);
-    }
+    container.textContent = text;
 
     await pause(0.1);
-    container.classList.remove("active");
     return;
 }
-
 
 async function parse(input) {
 
@@ -34,11 +28,12 @@ async function parse(input) {
 
     // Try to import the command function
     try {
-        module = await import(`./commands/${command}.js`);
+        module = import(`./commands/${command}.js`);
     } catch (e) {
         console.error(e);
 
         if (e instanceof TypeError) {
+            type(`command not found: ${command}`)
             e.message = `Unknown command: ${command}`;
             type("Command not found")
         }
