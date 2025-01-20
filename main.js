@@ -1,86 +1,83 @@
-function pause(s = 1) {
-    return new Promise(resolve => setTimeout(resolve, 1000 * Number(s)));
+// UTIL FUNCTIONS
+// -----------------------
+
+function pause(time) {
+  // Pauses for `time` seconds
+  return new Promise((resolve) => setTimeout(resolve, 1000 * Number(time)));
 }
 
-async function type(text) {
-
-    let queue = text.split("");
-    let container = document.querySelector(".terminal")
-
-    container.textContent = text;
-
-    await pause(0.1);
-    return;
+function type(msg, container = document.getElementById("terminal")) {
+  // write msg to container (default terminal)
+  container.innerHTML += msg;
 }
 
-async function parse(input) {
+// COMMAND STUFF
+// ----------------------
 
-    // Only allow words, separated by space
-	let matches = String(input).match(/^(\w+(?:(?:\s|-)\w+)*)$/);
+class Command {
+  constructor(exe) {
+    this.exe = exe;
+  }
 
-	if (!matches) {
-		throw new Error("Invalid command");
-	}
-	let command = matches[1];
-	let args = matches[2];
-
-    let module;
-
-    // Try to import the command function
-    try {
-        module = import(`./commands/${command}.js`);
-    } catch (e) {
-        console.error(e);
-
-        if (e instanceof TypeError) {
-            type(`command not found: ${command}`)
-            e.message = `Unknown command: ${command}`;
-            type("Command not found")
-        }
-		else {
-			e.message = "Error while executing command";
-		}
-		throw e;
-    }
-
-    // Show any output if the command exports any
-	await type(module.output);
-	await pause();
-
-	// Execute the command (default export)
-	await module.default?.(args);
-
-	return;
+  runCommand(args) {
+    let output = this.exe(args);
+    return output;
+  }
 }
+
+function hello(args) {
+  type("Hello!");
+}
+const Hello = new Command(hello);
+
+let commandList = {
+  hello: Hello,
+};
+
+// INTERNAL FUNCTIONS
+// ----------------------
 
 async function input(pw) {
-    return new Promise(resolve => {
-        const onKeyDown = event => {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                let result = event.target.textContent;
-                resolve(result);
-            }
-        };
+  return new Promise((resolve) => {
+    const onKeyDown = (event) => {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        let result = event.target.textContent;
+        resolve(result);
+      }
+    };
 
-        let terminal = document.querySelector(".terminal");
-        let input = document.createElement("div");
-        input.setAttribute("id", "input");
-        input.setAttribute("contenteditable", true);
-        input.addEventListener("keydown", onKeyDown);
-        terminal.appendChild(input);
-        input.focus();
-    });
+    let terminal = document.querySelector(".terminal");
+    let input = document.createElement("div");
+    input.setAttribute("id", "input");
+    input.setAttribute("contenteditable", true);
+    input.addEventListener("keydown", onKeyDown);
+    terminal.appendChild(input);
+    input.focus();
+  });
+}
+
+function parse(userInput) {
+  userInput = userInput.split(" ");
+  let command = userInput[0];
+  let args = userInput.slice(1);
+
+  console.log(Object.keys(commandList));
+
+  if (Object.keys(commandList).includes(command)) {
+    commandList[command].runCommand(args);
+  } else {
+    type("unknown command");
+  }
 }
 
 async function main() {
-    let command = await input()
-    await parse(command);
+  let command = await input();
+  parse(command);
 
-    main();
+  main();
 }
 
-window.onload = function() {
-    main();
-  };
-  
+window.onload = function () {
+  main();
+};
