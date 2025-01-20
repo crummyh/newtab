@@ -59,7 +59,7 @@ function search(args) {
     googleUrl =
       "http://www.google.com.pk/search?btnG=1&pws=0&q=" +
       question.replace(" ", "+");
-    window.location.href(googleUrl);
+    window.location.href = googleUrl;
   } else {
     type("please enter a query");
   }
