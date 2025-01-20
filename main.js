@@ -78,6 +78,9 @@ async function input(pw) {
     input.setAttribute("id", "input");
     input.setAttribute("contenteditable", true);
     input.addEventListener("keydown", onKeyDown);
+    if (terminal.lastElementChild) {
+      terminal.lastElementChild.setAttribute("contenteditable", false);
+    }
     terminal.appendChild(input);
     input.focus();
   });
