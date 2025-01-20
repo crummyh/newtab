@@ -53,11 +53,25 @@ function mathCommand(args) {
 }
 const MathCommand = new Command(mathCommand);
 
+function search(args) {
+  question = args.join(" ");
+  if (question) {
+    googleUrl =
+      "http://www.google.com.pk/search?btnG=1&pws=0&q=" +
+      question.replace(" ", "+");
+    window.location.href(googleUrl);
+  } else {
+    type("please enter a query");
+  }
+}
+const Search = new Command(search);
+
 let commandList = {
   hello: Hello,
   exit: Exit,
   clear: Clear,
   math: MathCommand,
+  search: Search,
 };
 
 // INTERNAL FUNCTIONS
