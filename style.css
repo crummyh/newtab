@@ -184,6 +184,7 @@ body.fullscreen #crt {
     overflow-x: hidden;
     word-break: break-word;
     animation: textShadow 4s infinite;
+    scrollbar-color: var(--text-color) var(--bg-color);
 }
 
 .terminal,
