@@ -43,10 +43,21 @@ function clear(args) {
 }
 const Clear = new Command(clear);
 
+function mathCommand(args) {
+  expresion = args.join(" ");
+  try {
+    eval("type(" + expresion + ")");
+  } catch (err) {
+    type(err.message);
+  }
+}
+const MathCommand = new Command(mathCommand);
+
 let commandList = {
   hello: Hello,
   exit: Exit,
   clear: Clear,
+  math: MathCommand,
 };
 
 // INTERNAL FUNCTIONS
