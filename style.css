@@ -7,7 +7,6 @@
     --bg-color: #05321e;
     --dark: #111;
     --off: #050505;
-    --dark: #111;
     --term: "$ ";
 }
 
@@ -33,7 +32,7 @@ html {
 }
 
 body {
-    background: #111;
+    background: var(--dark);
     margin: 0;
     overflow: hidden;
 }
@@ -45,7 +44,7 @@ a {
 /*********** INPUT / OUTPUT *************/
 
 [contenteditable] {
-    caret-color: transparent; /** This hides the default browser caret */
+    caret-color: transparent;
     outline: none;
 }
 
