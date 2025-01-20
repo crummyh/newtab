@@ -30,8 +30,23 @@ function hello(args) {
 }
 const Hello = new Command(hello);
 
+function exit(args) {
+  window.close();
+}
+const Exit = new Command(exit);
+
+function clear(args) {
+  term = document.getElementById("terminal");
+  while (term.firstChild) {
+    term.removeChild(term.lastChild);
+  }
+}
+const Clear = new Command(clear);
+
 let commandList = {
   hello: Hello,
+  exit: Exit,
+  clear: Clear,
 };
 
 // INTERNAL FUNCTIONS
@@ -61,8 +76,6 @@ function parse(userInput) {
   userInput = userInput.split(" ");
   let command = userInput[0];
   let args = userInput.slice(1);
-
-  console.log(Object.keys(commandList));
 
   if (Object.keys(commandList).includes(command)) {
     commandList[command].runCommand(args);
