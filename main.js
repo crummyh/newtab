@@ -19,25 +19,34 @@ function openInNewTab(url) {
 // ----------------------
 
 class Command {
-  constructor(exe) {
+  constructor(exe, help = "") {
     this.exe = exe;
+    this.help = help;
   }
 
   runCommand(args) {
-    let output = this.exe(args);
-    return output;
+    if (args.includes("--help")) {
+      this.printHelp();
+    } else {
+      let output = this.exe(args);
+      return output;
+    }
+  }
+
+  printHelp() {
+    type(this.help);
   }
 }
 
 function hello(args) {
   type("Hello!");
 }
-const Hello = new Command(hello);
+const Hello = new Command(hello, "Says hello!");
 
 function exit(args) {
   window.close();
 }
-const Exit = new Command(exit);
+const Exit = new Command(exit, "Closes the tab");
 
 function clear(args) {
   term = document.getElementById("terminal");
@@ -45,7 +54,7 @@ function clear(args) {
     term.removeChild(term.lastChild);
   }
 }
-const Clear = new Command(clear);
+const Clear = new Command(clear, "Clears the display");
 
 function mathCommand(args) {
   expresion = args.join(" ");
@@ -55,7 +64,10 @@ function mathCommand(args) {
     type(err.message);
   }
 }
-const MathCommand = new Command(mathCommand);
+const MathCommand = new Command(
+  mathCommand,
+  "Prints the result of the expression. Uses JS eval",
+);
 
 function search(args) {
   question = args.join(" ");
@@ -68,7 +80,7 @@ function search(args) {
     type("please enter a query");
   }
 }
-const Search = new Command(search);
+const Search = new Command(search, "Search Google for text");
 
 function shortcut(args) {
   let canvasLink = document.createElement("div");
@@ -124,7 +136,24 @@ function shortcut(args) {
   terminal.appendChild(githubLink);
   terminal.appendChild(onshapeLink);
 }
-const Shortcut = new Command(shortcut);
+const Shortcut = new Command(shortcut, "Prints a list of quick links");
+
+// Add more commands here
+
+function help(args) {
+  if (args.length > 0) {
+    try {
+      commandList[args[0]].printHelp();
+    } catch {
+      type("unknown command: " + commandList[args[0]]);
+    }
+  } else {
+    for (let key in commandList) {
+      type(key + ": " + commandList[key].help + "<br>");
+    }
+  }
+}
+const HelpCommand = new Command(help, "Prints help");
 
 let commandList = {
   hello: Hello,
@@ -133,6 +162,7 @@ let commandList = {
   math: MathCommand,
   search: Search,
   short: Shortcut,
+  help: HelpCommand,
 };
 
 // INTERNAL FUNCTIONS
