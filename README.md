@@ -21,4 +21,4 @@ Some of the JS, most of the CSS, and all of the HTML was taken from Edwin's awes
 3. Add your command to the `commandList`, with the key being the command name, and the value the object
 
 ## License
-See LICENSE.md
+See [LICENSE](https://github.com/crummyh/newtab/blob/main/LICENSE)
