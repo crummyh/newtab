@@ -3,6 +3,8 @@ A info hub and home for my school computer.
 
 ![Static Badge](https://img.shields.io/badge/Plain-JavaScript-f7df1e?style=for-the-badge)
 
+![Screenshot](https://github.com/crummyh/newtab/blob/main/img/screenshot.png)
+
 ## Install
 
 1. [Download the repo as a zip](https://github.com/NicoletFEAR/2025-BaseSwerveDrive/archive/refs/heads/main.zip)
