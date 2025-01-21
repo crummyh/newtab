@@ -16,7 +16,7 @@ Some of the JS, most of the CSS, and all of the HTML was taken from Edwin's awes
 
 ## TODO
 - Add more commands
-- Add option for choice of font (JetBrains Mono (default), [Silkscreen](https://fonts.google.com/specimen/Silkscreen), or [VT323](https://fonts.google.com/specimen/VT323)
+- Add option for choice of font (JetBrains Mono (default), [Victor Mono](https://fonts.google.com/specimen/Victor+Mono), or [VT323](https://fonts.google.com/specimen/VT323))
 
 ## Creating a command
 1. Create a function that takes a list of strings for arguments
