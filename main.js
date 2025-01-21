@@ -1,5 +1,3 @@
-// Based off of https://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh
-
 // UTIL FUNCTIONS
 // -----------------------
 
