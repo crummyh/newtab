@@ -43,6 +43,7 @@ a {
 
 .linkDiv {
     text-decoration-line: underline;
+    cursor: pointer;
 }
 
 /*********** INPUT / OUTPUT *************/

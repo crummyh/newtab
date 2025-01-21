@@ -81,8 +81,50 @@ function shortcut(args) {
   );
   canvasLink.setAttribute("class", "linkDiv");
 
+  let skywardLink = document.createElement("div");
+  skywardLink.innerHTML = "Skyward";
+  skywardLink.setAttribute(
+    "onclick",
+    "openInNewTab('https://skyward.iscorp.com/scripts/wsisa.dll/WService=wsedunicolethswi/fwemnu01.w')",
+  );
+  skywardLink.setAttribute("class", "linkDiv");
+
+  let enrichmentLink = document.createElement("div");
+  enrichmentLink.innerHTML = "Enrichment";
+  enrichmentLink.setAttribute(
+    "onclick",
+    "openInNewTab('https://login.enrichingstudents.com/')",
+  );
+  enrichmentLink.setAttribute("class", "linkDiv");
+
+  let driveLink = document.createElement("div");
+  driveLink.innerHTML = "Drive";
+  driveLink.setAttribute(
+    "onclick",
+    "openInNewTab('https://drive.google.com/drive/u/0/home')",
+  );
+  driveLink.setAttribute("class", "linkDiv");
+
+  let githubLink = document.createElement("div");
+  githubLink.innerHTML = "Github";
+  githubLink.setAttribute("onclick", "openInNewTab('https://github.com/')");
+  githubLink.setAttribute("class", "linkDiv");
+
+  let onshapeLink = document.createElement("div");
+  onshapeLink.innerHTML = "Onshape";
+  onshapeLink.setAttribute(
+    "onclick",
+    "openInNewTab('https://nicolet.onshape.com/')",
+  );
+  onshapeLink.setAttribute("class", "linkDiv");
+
   let terminal = document.getElementById("terminal");
   terminal.appendChild(canvasLink);
+  terminal.appendChild(skywardLink);
+  terminal.appendChild(enrichmentLink);
+  terminal.appendChild(driveLink);
+  terminal.appendChild(githubLink);
+  terminal.appendChild(onshapeLink);
 }
 const Shortcut = new Command(shortcut);
 
@@ -114,7 +156,9 @@ async function input(pw) {
     input.setAttribute("contenteditable", true);
     input.addEventListener("keydown", onKeyDown);
     if (terminal.lastElementChild) {
-      terminal.lastElementChild.setAttribute("contenteditable", false);
+      for (let i = 0; i < terminal.children.length; i++) {
+        terminal.children[i].setAttribute("contenteditable", false);
+      }
     }
     terminal.appendChild(input);
     input.focus();
