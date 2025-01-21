@@ -41,6 +41,10 @@ a {
     outline: none;
 }
 
+.linkDiv {
+    text-decoration-line: underline;
+}
+
 /*********** INPUT / OUTPUT *************/
 
 [contenteditable] {

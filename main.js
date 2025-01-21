@@ -1,3 +1,5 @@
+// Based off of https://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh
+
 // UTIL FUNCTIONS
 // -----------------------
 
@@ -9,6 +11,10 @@ function pause(time) {
 function type(msg, container = document.getElementById("terminal")) {
   // write msg to container (default terminal)
   container.innerHTML += msg;
+}
+
+function openInNewTab(url) {
+  window.open(url, "_blank").focus();
 }
 
 // COMMAND STUFF
@@ -66,12 +72,27 @@ function search(args) {
 }
 const Search = new Command(search);
 
+function shortcut(args) {
+  let canvasLink = document.createElement("div");
+  canvasLink.innerHTML = "Canvas";
+  canvasLink.setAttribute(
+    "onclick",
+    "openInNewTab('https://nicolet.instructure.com/')",
+  );
+  canvasLink.setAttribute("class", "linkDiv");
+
+  let terminal = document.getElementById("terminal");
+  terminal.appendChild(canvasLink);
+}
+const Shortcut = new Command(shortcut);
+
 let commandList = {
   hello: Hello,
   exit: Exit,
   clear: Clear,
   math: MathCommand,
   search: Search,
+  short: Shortcut,
 };
 
 // INTERNAL FUNCTIONS
