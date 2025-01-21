@@ -15,8 +15,8 @@ A info hub and home for my school computer.
 Some of the JS, most of the CSS, and all of the HTML was taken from Edwin's awesome [blog post](https://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh) make sure to check it out.
 
 ## TODO
-- Add help system
 - Add more commands
+- Add option for choice of font (JetBrains Mono (default), [Silkscreen](https://fonts.google.com/specimen/Silkscreen), or [VT323](https://fonts.google.com/specimen/VT323)
 
 ## Creating a command
 1. Create a function that takes a list of strings for arguments
