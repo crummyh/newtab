@@ -15,6 +15,7 @@ A info hub and home for my school computer.
 Some of the JS, most of the CSS, and all of the HTML was taken from Edwin's awesome [blog post](https://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh) make sure to check it out.
 
 ## TODO
+- Add help system
 - Add more commands
 
 ## Creating a command
