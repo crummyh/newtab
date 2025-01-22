@@ -151,7 +151,16 @@ function font(args) {
     } else {type("unknown font");}
   }
 }
-const Font = new Command(font, "Changes the font. Options: jetbrains, victor, term, & reset")
+const Font = new Command(font, "Changes the font. Options: jetbrains, victor, term, & reset");
+
+function echo(args) {
+  if (args){
+    type(args.join(" "));
+  } else {
+    type("error");
+  }
+}
+const Echo = new Command(echo, "Same as UNIX echo but without the quotes and options");
 
 // Add more commands here
 
@@ -178,6 +187,7 @@ let commandList = {
   search: Search,
   short: Shortcut,
   font: Font,
+  echo: Echo,
   help: HelpCommand,
 };
 
