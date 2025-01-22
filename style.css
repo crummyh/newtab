@@ -12,12 +12,23 @@
 
 /*********** FONT STUFF *************/
 
-.mono-font {
+.jetbrains-font {
     font-family: "JetBrains Mono", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
 }
+.vt323-font {
+    font-family: "VT323", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.victor-font {
+    font-family: "Victor Mono", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
 
 /*********** GENERIC STUFF *************/
 

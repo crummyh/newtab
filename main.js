@@ -138,6 +138,21 @@ function shortcut(args) {
 }
 const Shortcut = new Command(shortcut, "Prints a list of quick links");
 
+function font(args) {
+  if (args) {
+    if (args[0] == "jetbrains") {
+      document.body.setAttribute("class", "jetbrains-font");
+    } else if (args[0] == "victor") {
+      document.body.setAttribute("class", "victor-font");
+    } else if (args[0] == "term") {
+      document.body.setAttribute("class", "vt323-font");
+    } else if (args[0] == "reset") {
+      document.body.setAttribute("class", "jetbrains-font");
+    } else {type("unknown font");}
+  }
+}
+const Font = new Command(font, "Changes the font. Options: jetbrains, victor, term, & reset")
+
 // Add more commands here
 
 function help(args) {
@@ -162,6 +177,7 @@ let commandList = {
   math: MathCommand,
   search: Search,
   short: Shortcut,
+  font: Font,
   help: HelpCommand,
 };
 
