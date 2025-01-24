@@ -141,12 +141,16 @@ const Shortcut = new Command(shortcut, "Prints a list of quick links");
 function font(args) {
   if (args) {
     if (args[0] == "jetbrains") {
+      //localStorage.setItem("font", "jetbrains");
       document.body.setAttribute("class", "jetbrains-font");
     } else if (args[0] == "victor") {
+      //localStorage.setItem("font", "victor");
       document.body.setAttribute("class", "victor-font");
     } else if (args[0] == "term") {
+      //localStorage.setItem("font", "term");
       document.body.setAttribute("class", "vt323-font");
     } else if (args[0] == "reset") {
+      //localStorage.setItem("font", "jetbrains");
       document.body.setAttribute("class", "jetbrains-font");
     } else {type("unknown font");}
   }
@@ -161,6 +165,19 @@ function echo(args) {
   }
 }
 const Echo = new Command(echo, "Same as UNIX echo but without the quotes and options");
+
+function debugCommand(args) {
+ if (args) {
+    if (args[0] == "storage") {
+      if (args[1] == "clear") {
+        localStorage.clear()
+      }
+    }
+  } else {
+    type("No args specified");
+  }
+}
+const DebugCommand = new Command(debugCommand, "Debug things. Don't use if you don't know what it does");
 
 // Add more commands here
 
@@ -188,6 +205,7 @@ let commandList = {
   short: Shortcut,
   font: Font,
   echo: Echo,
+  debug: DebugCommand,
   help: HelpCommand,
 };
 
@@ -238,6 +256,13 @@ async function main() {
   main();
 }
 
+function boot() {
+  if (localStorage.getItem("font") != null) {
+    font(localStorage.getItem("font"));
+  }
+}
+
 window.onload = function () {
+  //boot();
   main();
 };
