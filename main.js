@@ -270,6 +270,27 @@ function boot() {
   ?.split("=")[1];
 
   font(fontCookieValue);
+
+  const c = new CommandPal({
+    hotkey: "ctrl+k",
+    commands: [
+      {
+        name: "Send Message",
+        shortcut: "ctrl+m",
+        handler: () => alert("Send Message"),
+      },
+      {
+        name: "Search Contacts",
+        handler: () => alert("Searching contacts..."),
+      },
+      {
+        name: "Goto Profile",
+        shortcut: "ctrl+4",
+        handler: () => window.location.hash = "profile",
+      },
+    ],
+  });
+  c.start();
 }
 
 window.onload = function () {
