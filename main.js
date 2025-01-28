@@ -15,6 +15,13 @@ function openInNewTab(url) {
   window.open(url, "_blank").focus();
 }
 
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+
 // COMMAND STUFF
 // ----------------------
 
@@ -141,16 +148,16 @@ const Shortcut = new Command(shortcut, "Prints a list of quick links");
 function font(args) {
   if (args) {
     if (args[0] == "jetbrains") {
-      //localStorage.setItem("font", "jetbrains");
+      document.cookie = "font=jetbrains; Secure";
       document.body.setAttribute("class", "jetbrains-font");
     } else if (args[0] == "victor") {
-      //localStorage.setItem("font", "victor");
+      document.cookie = "font=victor; Secure";
       document.body.setAttribute("class", "victor-font");
     } else if (args[0] == "term") {
-      //localStorage.setItem("font", "term");
+      document.cookie = "font=term; Secure";
       document.body.setAttribute("class", "vt323-font");
     } else if (args[0] == "reset") {
-      //localStorage.setItem("font", "jetbrains");
+      document.cookie = "font=jetbrains; Secure";
       document.body.setAttribute("class", "jetbrains-font");
     } else {type("unknown font");}
   }
@@ -257,12 +264,15 @@ async function main() {
 }
 
 function boot() {
-  if (localStorage.getItem("font") != null) {
-    font(localStorage.getItem("font"));
-  }
+  const fontCookieValue = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("font="))
+  ?.split("=")[1];
+
+  font(fontCookieValue);
 }
 
 window.onload = function () {
-  //boot();
+  boot();
   main();
 };
